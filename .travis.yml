@@ -1,0 +1,14 @@
+branches:
+  only:
+  - develop
+services:
+  docker
+
+before_script: docker pull $DOCKER_USERNAME/nodexperiencetest
+script: docker run $DOCKER_USERNAME/nodexperiencetest
+
+after_success:
+- docker build -t $DOCKER_USERNAME/nodexperience .
+- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- docker push $DOCKER_USERNAME/nodexperience:latest
+- sh push.sh

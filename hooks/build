@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "------ HOOK START - BUILD -------"
+printenv
+docker build -t sergio19006/nodexperience --build-arg ATLAS_PASSWORD --build-arg MAIL_PASSWORD --build-arg PHOTO_SERVICE .
